@@ -22,7 +22,6 @@ namespace Capstone.Classes
         public int Nickels
         {
             get { return this.nickels; }
-
         }
 
         public int Quarters
@@ -30,26 +29,29 @@ namespace Capstone.Classes
             get { return this.quarters; }
         }
 
-        public double TotalChange
+        public decimal TotalChange
         {
-            get { return this.totalChange; }
+            get { return (decimal)(this.quarters * 25 + this.dimes * 10 + this.nickels * 5); }
         }
 
-        public Change(decimal amountInDollars, int amountInCents)
+        public Change(int amountInCents)
         {
-           
+            if(amountInCents>= 25)
+            {
+                this.quarters = amountInCents / 25;
+                amountInCents = amountInCents % 25;
+            }
+            if(amountInCents >= 10)
+            {
+                this.dimes = amountInCents / 10;
+                amountInCents = amountInCents % 10;
+            }
+            if(amountInCents >= 5)
+            {
+                this.nickels = amountInCents / 5;
+                amountInCents = amountInCents % 5;
+            }
+            
         }
-
-        public Change(decimal amountInDollars, int amountInCents)
-        {
-
-        }
-
-        ////We need to check into this one
-        //public void Equals(Change amountInDollars, Change amountInCents)
-        //{
-
-        //}
-
     }
 }

@@ -30,7 +30,6 @@ namespace Capstone.Classes
             this.priceInCents = price;
         }
 
-
         //abstract method
         public abstract string Consume();
 

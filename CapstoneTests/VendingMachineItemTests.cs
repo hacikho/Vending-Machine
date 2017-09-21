@@ -5,10 +5,10 @@ using Capstone.Classes;
 namespace CapstoneTests
 {
     [TestClass]
-    public class VendingMachineItemTest
+    public class VendingMachineItemTests
     {
         [TestMethod]
-        public void TetsCandyItem()
+        public void TestCandyItem()
         {
             CandyItem skittles = new CandyItem("Skittles", 1.00M);
             Assert.AreEqual("Munch Munch, Yum!", skittles.Consume());
@@ -19,7 +19,6 @@ namespace CapstoneTests
         {
             BeverageItem pepsi = new BeverageItem("Diet pepsi", 2.00M);
             Assert.AreEqual("Glug Glug, Yum!", pepsi.Consume());
-
         }
 
         [TestMethod]
