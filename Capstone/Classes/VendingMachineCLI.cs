@@ -69,9 +69,9 @@ namespace Capstone.Classes
                 if (Option_MakeSelection == "1")
                 {
                     Console.WriteLine("Please enter the number of dollars you want to feed into the vending machine: ");
-                    vm.FeedMoney(int.Parse(Console.ReadLine()) * 100);
+                    vm.FeedMoney(int.Parse(Console.ReadLine()));
                     Console.WriteLine("     Current balance:  $" + vm.CurrentBalance);
-                    Console.WriteLine("     Your change is: " + vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels + " nickels");  //need to finish
+                    //Console.WriteLine("     Your change is: " + vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels + " nickels");  //need to finish
                     Console.WriteLine();
                 }
                 if (Option_MakeSelection == "2")
@@ -84,15 +84,16 @@ namespace Capstone.Classes
                     }
                     else if(vm.GetQuantityRemaining(check) == -1)
                     {
-                        //Console.WriteLine("That was not a valid selection!!!");
-                        //break;
+                        
                     }
                     vm.Purchase(check);
-                    //Console.WriteLine("     You have selected " +  + ".");
                     Console.WriteLine();
                 }
                 else if (Option_MakeSelection == "3")
                 {
+                    
+                    Console.WriteLine(vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels);
+                    
                     Console.WriteLine("     Thank you for your business!!!");
                 }
                 else if (Option_MakeSelection == "4")

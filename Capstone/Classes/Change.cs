@@ -34,22 +34,22 @@ namespace Capstone.Classes
             get { return (decimal)(this.quarters * 25 + this.dimes * 10 + this.nickels * 5); }
         }
 
-        public Change(int amountInCents)
+        public Change(decimal amountInDollar)
         {
-            if(amountInCents>= 25)
+            if(amountInDollar>= 0.25M)
             {
-                this.quarters = amountInCents / 25;
-                amountInCents = amountInCents % 25;
+                this.quarters = (int)(amountInDollar / 0.25M);
+                amountInDollar = amountInDollar % 0.25M;
             }
-            if(amountInCents >= 10)
+            if(amountInDollar >= 0.10M)
             {
-                this.dimes = amountInCents / 10;
-                amountInCents = amountInCents % 10;
+                this.dimes = (int)(amountInDollar / 0.10M);
+                amountInDollar = amountInDollar % 0.10M;
             }
-            if(amountInCents >= 5)
+            if(amountInDollar >= 0.05M)
             {
-                this.nickels = amountInCents / 5;
-                amountInCents = amountInCents % 5;
+                this.nickels = (int)(amountInDollar / 0.05M);
+                amountInDollar = amountInDollar % 0.05M;
             }
             
         }

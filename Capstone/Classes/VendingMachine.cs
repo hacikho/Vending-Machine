@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Capstone.Classes.Exceptions;
 
 namespace Capstone.Classes
 {
@@ -45,6 +46,7 @@ namespace Capstone.Classes
         public Change ReturnChange()
         {
             int x = Convert.ToInt32(this.currentBalance);
+            this.currentBalance = 0;
             return new Change(x);
 
         }
@@ -73,9 +75,10 @@ namespace Capstone.Classes
               
                 
             }
-            catch(IOException ex)
+            catch(Exception ex)
             {
-                //InvalidSlotIDException x = 
+                InvalidSlotIDException x = new InvalidSlotIDException();
+                //x.message;
 
             }
             
@@ -95,12 +98,8 @@ namespace Capstone.Classes
             }
         }
 
-        /*
-        public Change ReturnChange()
-        {
-            Change returnChange = new Change((int)this.currentBalance);
-            ReturnChange.
-        }
-        */
+        
+     
+        
     }
 }
