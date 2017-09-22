@@ -19,7 +19,19 @@ namespace Capstone.Classes
         {
 
             Dictionary<string, List<VendingMachineItem>> inventory = vm.GetInventory();
-            foreach(KeyValuePair<>)
+            foreach(KeyValuePair<string, List<VendingMachineItem>> kvp in inventory)
+            {
+                Console.WriteLine("{0}, {1}, {2}, {3}", kvp.Key, kvp.Value[0].ItemName, kvp.Value[0].PriceInCents, kvp.Value.Count);
+            }
+           
+        }
+
+        public void Run()
+        {
+            //while (true)
+            //{
+                DisplayInventory();
+            //}
         }
     }
 }

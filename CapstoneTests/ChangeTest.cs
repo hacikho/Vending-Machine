@@ -7,6 +7,7 @@ namespace CapstoneTests
     [TestClass]
     public class ChangeTest
     {
+        
         [TestMethod]
         public void TestWith200Cent()
         {
@@ -19,6 +20,13 @@ namespace CapstoneTests
         {
             Change newChange = new Change(240);
             Assert.AreEqual(1, newChange.Dimes);
+        }
+
+        [TestMethod]
+        public void TestWith205Cent()
+        {
+            Change newChange = new Change(205);
+            Assert.AreEqual(1, newChange.Nickels);
         }
     }
 }

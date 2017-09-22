@@ -12,7 +12,7 @@ namespace Capstone.Classes
         private int dimes;
         private int nickels;
         private int quarters;
-        private double totalChange;
+        //private double totalChange;
 
         public int Dimes
         {
