@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Capstone.Classes
 {
@@ -57,23 +58,49 @@ namespace Capstone.Classes
 
         public VendingMachineItem Purchase(string slotID)
         {
-            if (inventory.ContainsKey(slotID))
+            try
             {
-                if(inventory[slotID].Count() >=1 && this.currentBalance >= inventory[slotID][0].PriceInCents)
+                if (inventory.ContainsKey(slotID))
                 {
-                    VendingMachineItem x = inventory[slotID][0];
-                    inventory[slotID].RemoveAt(0);
-                    this.currentBalance -= inventory[slotID][0].PriceInCents;
-                    return x;
+                    if (inventory[slotID].Count() >= 1 && this.currentBalance >= inventory[slotID][0].PriceInCents)
+                    {
+                        VendingMachineItem x = inventory[slotID][0];
+                        this.currentBalance -= inventory[slotID][0].PriceInCents;
+                        inventory[slotID].RemoveAt(0);
+                        return x;
+                    }
                 }
+              
+                
             }
+            catch(IOException ex)
+            {
+                //InvalidSlotIDException x = 
+
+            }
+            
             return null;
         }
 
         public int GetQuantityRemaining(string slotId)
         {
-            int remainingQuantity = inventory[slotId].Count;
-            return remainingQuantity;
+            if (inventory.ContainsKey(slotId))
+            {
+                int remainingQuantity = inventory[slotId].Count;
+                return remainingQuantity;
+            }
+            else
+            {
+                return -1;
+            }
         }
+
+        /*
+        public Change ReturnChange()
+        {
+            Change returnChange = new Change((int)this.currentBalance);
+            ReturnChange.
+        }
+        */
     }
 }
