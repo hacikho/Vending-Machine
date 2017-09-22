@@ -16,6 +16,7 @@ namespace Capstone.Classes
         private string Option_DisplayVendingMachine;
         private string Option_ReturnToPreviousMenu;
         private string Option_Quit;
+       
 
 
         public VendingMachineCLI(VendingMachine vm)
@@ -25,7 +26,6 @@ namespace Capstone.Classes
 
         public void DisplayInventory()
         {
-            //Dictionary<string, List<VendingMachineItem>> inventory = vm.GetInventory();
             foreach(KeyValuePair<string, List<VendingMachineItem>> kvp in vm.inventory)
             {
                 Console.WriteLine("{0}, {1}, {2}, {3}", kvp.Key, kvp.Value[0].ItemName, kvp.Value[0].PriceInCents, kvp.Value.Count);
@@ -75,8 +75,6 @@ namespace Capstone.Classes
                 {
 
                     Console.WriteLine("     Please enter a slot number: ");
-                    
-                    //VendingMachine x = new VendingMachine();
                     
                     vm.Purchase(Console.ReadLine());
                     //Console.WriteLine("     You purchases " + );
