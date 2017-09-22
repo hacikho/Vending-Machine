@@ -63,27 +63,12 @@ namespace Capstone.Classes
                 {
                     VendingMachineItem x = inventory[slotID][0];
                     inventory[slotID].RemoveAt(0);
+                    this.currentBalance -= inventory[slotID][0].PriceInCents;
                     return x;
                 }
             }
+
             return null;
         }
-
-        //public VendingMachineItem GetItemAtSlot(string slotId)
-        //{
-        //    return inventory[slotId].;
-        //}
-        //public VendingMachineItem GetItemAtSlot(string slotID)
-        //{
-        //    return ;
-        //}
-
-
-
-
-
-
-
-
     }
 }

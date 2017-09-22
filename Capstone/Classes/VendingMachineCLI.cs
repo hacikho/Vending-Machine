@@ -56,7 +56,7 @@ namespace Capstone.Classes
             {
                 Console.WriteLine("     -------------Purchase Menu------");
                 Console.WriteLine("     Please make your selection: ");
-
+                Console.WriteLine("     Current Balance: " + vm.CurrentBalance);
                 Console.WriteLine("     1) Feed Money");
                 Console.WriteLine("     2) Select Product");
                 Console.WriteLine("     3) Finish Transaction");
@@ -73,7 +73,14 @@ namespace Capstone.Classes
                 }
                 if (Option_MakeSelection == "2")
                 {
+
                     Console.WriteLine("     Please enter a slot number: ");
+                    
+                    VendingMachine x = new VendingMachine();
+                    
+                    x.Purchase(Console.ReadLine());
+                    //Console.WriteLine("     You purchases " + );
+
                 }
                 else if (Option_MakeSelection == "3")
                 {
@@ -92,6 +99,7 @@ namespace Capstone.Classes
         {
             while (true)
             {
+
                 DisplayMainMenu();
             }
         }
