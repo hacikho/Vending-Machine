@@ -9,28 +9,28 @@ namespace CapstoneTests
     {
 
         [TestMethod]
-        public void TestWith200Cent()
+        public void TestWith200Cents()
         {
             Change newChange = new Change(200);
             Assert.AreEqual(8, newChange.Quarters);
         }
 
         [TestMethod]
-        public void TestWith240Cent()
+        public void TestWith240Cents()
         {
             Change newChange = new Change(240);
             Assert.AreEqual(1, newChange.Dimes);
         }
 
         [TestMethod]
-        public void TestWith205Cent()
+        public void TestWith205Cents()
         {
             Change newChange = new Change(205);
             Assert.AreEqual(1, newChange.Nickels);
         }
 
 
-        public void Will35CentRenturn1QAnd1Dime()
+        public void Will35CentsReturn1QAnd1Dime()
         {
             Change thirtyFive = new Change(35);
 
@@ -39,7 +39,7 @@ namespace CapstoneTests
         }
 
         [TestMethod]
-        public void Will1Dollar65CentsCentRenturn1QAnd1Dime()
+        public void Will1Dollar65CentsCentReturn1QAnd1Dime()
         {
             Change one65 = new Change(165);
 

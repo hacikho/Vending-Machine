@@ -7,11 +7,11 @@ namespace CapstoneTests
     public class InventoryFileDALTests
     {
         InventoryFileDAL newObject;
+
         [TestInitialize]
         public void Initialize()
         {
             newObject = new InventoryFileDAL("vendingmachine.csv");
-
         }
 
         [TestMethod]

@@ -58,7 +58,7 @@ namespace Capstone.Classes
             {
                 Console.WriteLine("     -------------Purchase Menu------");
                 Console.WriteLine("     Please make your selection: ");
-                Console.WriteLine("     Current Balance:  $" + vm.CurrentBalance);
+                Console.WriteLine("     Current Money Provided:  $" + vm.CurrentBalance);
                 Console.WriteLine("     1) Feed Money");
                 Console.WriteLine("     2) Select Product");
                 Console.WriteLine("     3) Finish Transaction");
@@ -70,7 +70,7 @@ namespace Capstone.Classes
                 {
                     Console.WriteLine("Please enter the number of dollars you want to feed into the vending machine: ");
                     vm.FeedMoney(int.Parse(Console.ReadLine()));
-                    Console.WriteLine("     Current balance:  $" + vm.CurrentBalance);
+                    Console.WriteLine("     Current Money Provided:  $" + vm.CurrentBalance);
                     //Console.WriteLine("     Your change is: " + vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels + " nickels");  //need to finish
                     Console.WriteLine();
                 }
@@ -80,7 +80,7 @@ namespace Capstone.Classes
                     string check = Console.ReadLine();
                     if(vm.GetQuantityRemaining(check) == 0)
                     {
-                        Console.WriteLine("Item Sold Out");
+                        Console.WriteLine("Item is Sold Out");
                     }
                     else if(vm.GetQuantityRemaining(check) == -1)
                     {
@@ -91,10 +91,11 @@ namespace Capstone.Classes
                 }
                 else if (Option_MakeSelection == "3")
                 {
-                    
+                   // Console.WriteLine("Your change is $);
                     Console.WriteLine(vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels);
                     
                     Console.WriteLine("     Thank you for your business!!!");
+                    Console.WriteLine();
                 }
                 else if (Option_MakeSelection == "4")
                 {
