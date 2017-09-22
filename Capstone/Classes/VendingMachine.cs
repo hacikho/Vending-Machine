@@ -8,7 +8,7 @@ namespace Capstone.Classes
 {
     public class VendingMachine
     {
-        private decimal currentBalance = 0;
+        private decimal currentBalance;
         private Dictionary<string, List<VendingMachineItem>> inventory;
         InventoryFileDAL inventorySource;
         //private string getItemAtSlot;
@@ -38,8 +38,7 @@ namespace Capstone.Classes
 
         public void FeedMoney(int dollars)
         {
-            this.currentBalance = dollars;
-
+            this.currentBalance += dollars;
         }
 
         public Change ReturnChange()
@@ -55,6 +54,25 @@ namespace Capstone.Classes
             return this.inventory;
         }
 
+
+        public VendingMachineItem Purchase(string slotID)
+        {
+            if (inventory.ContainsKey(slotID))
+            {
+                if(inventory[slotID].Count >=1 && this.currentBalance > inventory[slotID][0].PriceInCents)
+                {
+                    VendingMachineItem x = inventory[slotID][0];
+                    inventory[slotID].RemoveAt(0);
+                    return x;
+                }
+            }
+            return null;
+        }
+
+        //public VendingMachineItem GetItemAtSlot(string slotId)
+        //{
+        //    return inventory[slotId].;
+        //}
         //public VendingMachineItem GetItemAtSlot(string slotID)
         //{
         //    return ;

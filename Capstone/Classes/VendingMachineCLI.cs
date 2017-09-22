@@ -32,31 +32,68 @@ namespace Capstone.Classes
             }
         }
 
+        public void DisplayMainMenu()
+        {
+            Console.WriteLine("----------Main Menu---------------");
+            Console.WriteLine("Please make your selection: ");
+            Console.WriteLine("(1) Display Vending Machine Items");
+            Console.WriteLine("(2) Purchase");
+            Option_MakeSelection = Console.ReadLine();
+            if(Option_MakeSelection == "1")
+            {
+                DisplayInventory();
+            }else if(Option_MakeSelection == "2")
+            {
+                DisplayPurchaseMenu();
+            }
+
+        }
+
         public void DisplayPurchaseMenu()
         {
-            Console.WriteLine("1) Feed Money");
-            Console.WriteLine("2) Select Product");
-            Console.WriteLine("3) Finish Transaction");
-            Option_MakeSelection = Console.ReadLine();
-
-            if (Option_MakeSelection == "1")
+            bool flag = true;
+            while (flag)
             {
-                Console.WriteLine("Please enter the amount you want to feed into the vending machine as a whole number: ");
+                Console.WriteLine("     -------------Purchase Menu------");
+                Console.WriteLine("     Please make your selection: ");
 
-                vm.FeedMoney(int.Parse(Console.ReadLine())*100);
-                Console.WriteLine("Current balance: " + vm.CurrentBalance);
-                Console.WriteLine("Total change is: " + vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels + " nickels");  //need to finish
+                Console.WriteLine("     1) Feed Money");
+                Console.WriteLine("     2) Select Product");
+                Console.WriteLine("     3) Finish Transaction");
+                Console.WriteLine("     4) Back to main menu");
+                Option_MakeSelection = Console.ReadLine();
+
+                if (Option_MakeSelection == "1")
+                {
+                    Console.WriteLine("     Please enter the amount you want to feed into the vending machine as a whole number: ");
+
+                    vm.FeedMoney(int.Parse(Console.ReadLine()) * 100);
+                    Console.WriteLine("     Current balance: " + vm.CurrentBalance);
+                    Console.WriteLine("     Total change is: " + vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels + " nickels");  //need to finish
+                }
+                if (Option_MakeSelection == "2")
+                {
+                    Console.WriteLine("     Please enter a slot number: ");
+                }
+                else if (Option_MakeSelection == "3")
+                {
+                    Console.WriteLine("     Thanks you for your business!!!");
+                }
+                else if (Option_MakeSelection == "4")
+                {
+                    flag = false;
+                }
             }
         }
 
+        
 
         public void Run()
         {
-            //while (true)
-            //{
-            //DisplayInventory();
-            //}
-            DisplayPurchaseMenu();
+            while (true)
+            {
+                DisplayMainMenu();
+            }
         }
     }
 }
