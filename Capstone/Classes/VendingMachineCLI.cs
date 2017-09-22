@@ -77,7 +77,17 @@ namespace Capstone.Classes
                 if (Option_MakeSelection == "2")
                 {
                     Console.WriteLine("    Now enter a slot number to make your selection: ");
-                    vm.Purchase(Console.ReadLine());
+                    string check = Console.ReadLine();
+                    if(vm.GetQuantityRemaining(check) == 0)
+                    {
+                        Console.WriteLine("Item Sold Out");
+                    }
+                    else if(vm.GetQuantityRemaining(check) == -1)
+                    {
+                        //Console.WriteLine("That was not a valid selection!!!");
+                        //break;
+                    }
+                    vm.Purchase(check);
                     //Console.WriteLine("     You have selected " +  + ".");
                     Console.WriteLine();
                 }
