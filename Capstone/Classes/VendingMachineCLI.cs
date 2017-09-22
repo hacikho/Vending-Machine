@@ -17,8 +17,6 @@ namespace Capstone.Classes
         private string Option_ReturnToPreviousMenu;
         private string Option_Quit;
        
-
-
         public VendingMachineCLI(VendingMachine vm)
         {
             this.vm = vm;
@@ -39,14 +37,18 @@ namespace Capstone.Classes
             Console.WriteLine("(1) Display Vending Machine Items");
             Console.WriteLine("(2) Purchase");
             Option_MakeSelection = Console.ReadLine();
-            if(Option_MakeSelection == "1")
+            Console.WriteLine();
+
+            if (Option_MakeSelection == "1")
             {
                 DisplayInventory();
-            }else if(Option_MakeSelection == "2")
+                Console.WriteLine();
+            }
+            else if(Option_MakeSelection == "2")
             {
                 DisplayPurchaseMenu();
+                Console.WriteLine();
             }
-
         }
 
         public void DisplayPurchaseMenu()
@@ -56,33 +58,32 @@ namespace Capstone.Classes
             {
                 Console.WriteLine("     -------------Purchase Menu------");
                 Console.WriteLine("     Please make your selection: ");
-                Console.WriteLine("     Current Balance: " + vm.CurrentBalance);
+                Console.WriteLine("     Current Balance:  $" + vm.CurrentBalance);
                 Console.WriteLine("     1) Feed Money");
                 Console.WriteLine("     2) Select Product");
                 Console.WriteLine("     3) Finish Transaction");
                 Console.WriteLine("     4) Back to main menu");
                 Option_MakeSelection = Console.ReadLine();
+                Console.WriteLine();
 
                 if (Option_MakeSelection == "1")
                 {
-                    Console.WriteLine("     Please enter the amount you want to feed into the vending machine as a whole number: ");
-
+                    Console.WriteLine("Please enter the number of dollars you want to feed into the vending machine: ");
                     vm.FeedMoney(int.Parse(Console.ReadLine()) * 100);
-                    Console.WriteLine("     Current balance: " + vm.CurrentBalance);
-                    Console.WriteLine("     Total change is: " + vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels + " nickels");  //need to finish
+                    Console.WriteLine("     Current balance:  $" + vm.CurrentBalance);
+                    Console.WriteLine("     Your change is: " + vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels + " nickels");  //need to finish
+                    Console.WriteLine();
                 }
                 if (Option_MakeSelection == "2")
                 {
-
-                    Console.WriteLine("     Please enter a slot number: ");
-                    
+                    Console.WriteLine("    Now enter a slot number to make your selection: ");
                     vm.Purchase(Console.ReadLine());
-                    //Console.WriteLine("     You purchases " + );
-
+                    //Console.WriteLine("     You have selected " +  + ".");
+                    Console.WriteLine();
                 }
                 else if (Option_MakeSelection == "3")
                 {
-                    Console.WriteLine("     Thanks you for your business!!!");
+                    Console.WriteLine("     Thank you for your business!!!");
                 }
                 else if (Option_MakeSelection == "4")
                 {
@@ -91,14 +92,12 @@ namespace Capstone.Classes
             }
         }
 
-        
-
         public void Run()
         {
             while (true)
             {
-
                 DisplayMainMenu();
+                Console.WriteLine();
             }
         }
     }
