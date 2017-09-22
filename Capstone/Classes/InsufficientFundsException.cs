@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Capstone.Classes.Exceptions
+namespace Capstone.Classes
 {
-    public class VendingMachineException : Exception
+    class InsufficientFundsException: Exception
     {
 
     }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.IO;
 
 namespace Capstone.Classes.Exceptions
+
 {
-    public class VendingMachineException : Exception
+    class InvalidSlotIDException: Exception
     {
 
     }
