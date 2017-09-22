@@ -8,7 +8,6 @@ namespace Capstone.Classes
 {
     class TransactionFileLog
     {
-
         //This is the VM AUDIT WRITER from the whiteboard
 
         public void RecordCompleteTransaction(decimal initialAmount)

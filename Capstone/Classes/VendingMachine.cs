@@ -39,7 +39,17 @@ namespace Capstone.Classes
         public void FeedMoney(int dollars)
         {
             this.currentBalance = dollars;
+
         }
+
+        public Change ReturnChange()
+        {
+            int x = Convert.ToInt32(this.currentBalance);
+            return new Change(x);
+
+        }
+
+
         public Dictionary<string, List<VendingMachineItem>> GetInventory()
         {
             return this.inventory;

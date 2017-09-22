@@ -32,7 +32,6 @@ namespace Capstone.Classes
                 {
                     List<VendingMachineItem> vmList = new List<VendingMachineItem>();
 
-                    
                     string line = sr.ReadLine();
                     string[] slotArray = line.Split('|');
 
@@ -44,7 +43,8 @@ namespace Capstone.Classes
                         }
                         vmDictionary[slotArray[0]] = vmList;
                     }
-                    else if(lineCounter > 4 && lineCounter <= 8)
+
+                    else if (lineCounter > 4 && lineCounter <= 8)
                     {
                         for (int i = 0; i < 5; i++)
                         {
@@ -52,7 +52,8 @@ namespace Capstone.Classes
                         }
                         vmDictionary[slotArray[0]] = vmList;
                     }
-                    else if(lineCounter > 8 && lineCounter <= 12)
+
+                    else if (lineCounter > 8 && lineCounter <= 12)
                     {
                         for (int i = 0; i < 5; i++)
                         {
@@ -60,7 +61,8 @@ namespace Capstone.Classes
                         }
                         vmDictionary[slotArray[0]] = vmList;
                     }
-                    else if(lineCounter > 12 && lineCounter <= 16)
+
+                    else if (lineCounter > 12 && lineCounter <= 16)
                     {
                         for (int i = 0; i < 5; i++)
                         {
