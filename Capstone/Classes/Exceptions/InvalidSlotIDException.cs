@@ -8,14 +8,15 @@ using System.IO;
 namespace Capstone.Classes.Exceptions
 
 {
-    public class InvalidSlotIDException: Exception
+    public class InvalidSlotIDException: VendingMachineException
     {
+        
         private string message;
 
-        public string Message
+        public InvalidSlotIDException(string message)
         {
-            get { return "Not a valid Slot ID"; }
+            this.message = message;
         }
-
+        
     }
 }

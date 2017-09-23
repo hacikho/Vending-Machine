@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Capstone.Classes.Exceptions;
 
 namespace Capstone.Classes
 {
@@ -76,8 +77,19 @@ namespace Capstone.Classes
                 }
                 if (Option_MakeSelection == "2")
                 {
-                    Console.WriteLine("    Now enter a slot number to make your selection: ");
-                    string check = Console.ReadLine();
+                    try
+                    {
+                        Console.WriteLine("    Now enter a slot number to make your selection: ");
+                        string check = Console.ReadLine();
+                        vm.Purchase(check);
+                    }
+                    catch(OutOfStockException ex)
+                    {
+                        //OutOfStockException a = new OutOfStockException();
+                        Console.WriteLine(ex.Message); 
+                    }
+                    
+                    /*
                     if(vm.GetQuantityRemaining(check) == 0)
                     {
                         Console.WriteLine("Item is Sold Out");
@@ -86,7 +98,8 @@ namespace Capstone.Classes
                     {
                         
                     }
-                    vm.Purchase(check);
+                    */
+                    
                     Console.WriteLine();
                 }
                 else if (Option_MakeSelection == "3")

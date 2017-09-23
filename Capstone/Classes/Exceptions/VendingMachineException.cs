@@ -9,6 +9,12 @@ namespace Capstone.Classes.Exceptions
 {
     public class VendingMachineException : Exception
     {
-
+        /*
+        private string message;
+        public override string Message
+        {
+            get { return "exception message"; }   
+        } 
+        */
     }
 }
