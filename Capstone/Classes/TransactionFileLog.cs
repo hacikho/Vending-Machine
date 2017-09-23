@@ -9,10 +9,10 @@ namespace Capstone.Classes
 {
     public class TransactionFileLog 
     {
-        
+        string fullPath;
         //public DateTime DateTimeStamp
         //{
-        //    string timestamp = new DateTime.Now;
+           // string timestamp = new DateTime.Now;
 
         //    get { return timestamp; }
         //    set { timestamp = value; }
@@ -25,6 +25,8 @@ namespace Capstone.Classes
 
         public void RecordDeposit(decimal depositAmount, decimal finalBalance)
         {
+            WriteTransaction("this is " + depositAmount + " something" + finalBalance);
+
             //get { .depositAmount; }
             //get { .finalBalance; }
         }
@@ -39,34 +41,37 @@ namespace Capstone.Classes
 
         public void WriteTransaction(string message)
         {
-            
+            using(StreamWriter sw = new StreamWriter(fullPath))
+            {
+                sw.WriteLine(message);
+            }      
         }
 
         public TransactionFileLog(string filepath)
         {
             string currentDirectory = Directory.GetCurrentDirectory();
-            string filename = "AuditLog.txt";
-            string fullPath = Path.Combine(currentDirectory, filename);
+            string filename = "Log.txt";
+            this.fullPath = Path.Combine(currentDirectory, filename);
 
-            try
-            {
-                using (StreamWriter sw = new StreamWriter(fullPath))
-                {
+            //try
+            //{
+            //    using (StreamWriter sw = new StreamWriter(fullPath))
+            //    {
 
-                    for (int i = 1; i < ; i++)
-                    {
-                        if ()
-                        {
-                            sw.WriteLine("");
-                        }
+            //        for (int i = 1; i < ; i++)
+            //        {
+            //            if ()
+            //            {
+            //                sw.WriteLine("");
+            //            }
 
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("" + ex.Message);
-            }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("" + ex.Message);
+            //}
             
         }
 

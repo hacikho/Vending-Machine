@@ -15,7 +15,7 @@ namespace Capstone.Classes
         InventoryFileDAL inventorySource;
         //private string getItemAtSlot;
         //private int feedDollars;
-        //TransactionFileLog transactionLogger;
+        TransactionFileLog transactionLogger = new TransactionFileLog(filepath);
         //consume message
         public List<string> consumeList = new List<string>();
         //
@@ -44,6 +44,8 @@ namespace Capstone.Classes
         public void FeedMoney(int dollars)
         {
             this.currentBalance += dollars;
+            this.transactionLogger.RecordDeposit(dollars, this.currentBalance);
+            
         }
 
         public Change ReturnChange()
