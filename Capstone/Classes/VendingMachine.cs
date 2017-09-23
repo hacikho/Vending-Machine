@@ -16,6 +16,9 @@ namespace Capstone.Classes
         //private string getItemAtSlot;
         //private int feedDollars;
         //TransactionFileLog transactionLogger;
+        //consume message
+        public List<string> consumeList = new List<string>();
+        //
 
         public decimal CurrentBalance
         {
@@ -66,6 +69,8 @@ namespace Capstone.Classes
                 {
                     if (inventory[slotID].Count() >= 1 && this.currentBalance >= inventory[slotID][0].PriceInCents)
                     {
+                        consumeList.Add(inventory[slotID][0].Consume());
+
                         VendingMachineItem x = inventory[slotID][0];
                         this.currentBalance -= inventory[slotID][0].PriceInCents;
                         inventory[slotID].RemoveAt(0);
