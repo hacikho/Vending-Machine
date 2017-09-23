@@ -8,22 +8,38 @@ namespace CapstoneTests
     [TestClass]
     public class VendingMachineTests
     {
-        [TestMethod]
-        public void TestMethod1()
+        VendingMachine vmObject;
+        [TestInitialize]
+        public void Initialize()
         {
-            VendingMachine x = new VendingMachine();
-            x.FeedMoney(500);
-            x.Purchase("A1");
-            //Dictionary<string, List<VendingMachineItem>> inventory = new InventoryFileDAL("vendingmachine.csv").GetInventory(); 
+            vmObject = new VendingMachine();
 
-       // VendingMachineItem y = inventory["A1"][0];
-
-            Assert.AreEqual(4, x.GetQuantityRemaining("A1"));
-            x.Purchase("A1");
-            Assert.AreEqual(3, x.GetQuantityRemaining("A1"));
+        }
+        [TestMethod]
+        public void TestPurchaseMethod()
+        {
+            vmObject.FeedMoney(500);
+            vmObject.Purchase("A1");
+            Assert.AreEqual(4, vmObject.GetQuantityRemaining("A1"));
+            vmObject.Purchase("A1");
+            Assert.AreEqual(3, vmObject.GetQuantityRemaining("A1"));
 
         }
 
+        [TestMethod]
+        public void TestFeedMoneyMethod()
+        {
+            vmObject.FeedMoney(500);
+            Assert.AreEqual("500", vmObject.CurrentBalance);
+        }
 
+        [TestMethod]
+        public void TestReturnChangeMethod()
+        {
+            vmObject.FeedMoney(600);
+            vmObject.Purchase("D1");
+            Assert.AreEqual(0, vmObject.ReturnChange());
+            
+        }
     }
 }

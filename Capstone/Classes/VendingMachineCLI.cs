@@ -96,6 +96,12 @@ namespace Capstone.Classes
                     
                     Console.WriteLine("     Thank you for your business!!!");
                     Console.WriteLine();
+                    for(int i=0; i< vm.consumeList.Count; i++)
+                    {
+                        Console.WriteLine(vm.consumeList[i]);
+                    }
+                    vm.consumeList.Clear();
+
                 }
                 else if (Option_MakeSelection == "4")
                 {
