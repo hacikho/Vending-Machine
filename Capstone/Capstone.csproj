@@ -48,13 +48,14 @@
     <Compile Include="Classes\Change.cs" />
     <Compile Include="Classes\ChipItem.cs" />
     <Compile Include="Classes\GumItem.cs" />
-    <Compile Include="Classes\InsufficientFundsException.cs" />
-    <Compile Include="Classes\InvalidSlotIDException.cs" />
+    <Compile Include="Classes\Exceptions\InsufficientFundsException.cs" />
+    <Compile Include="Classes\Exceptions\InvalidSlotIDException.cs" />
     <Compile Include="Classes\InventoryFileDAL.cs" />
+    <Compile Include="Classes\Exceptions\OutOfStockException.cs" />
     <Compile Include="Classes\TransactionFileLog.cs" />
     <Compile Include="Classes\VendingMachine.cs" />
     <Compile Include="Classes\VendingMachineCLI.cs" />
-    <Compile Include="Classes\VendingMachineException.cs" />
+    <Compile Include="Classes\Exceptions\VendingMachineException.cs" />
     <Compile Include="Classes\VendingMachineItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

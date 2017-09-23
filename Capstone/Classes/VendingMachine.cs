@@ -63,8 +63,7 @@ namespace Capstone.Classes
 
         public VendingMachineItem Purchase(string slotID)
         {
-            try
-            {
+          
                 if (inventory.ContainsKey(slotID))
                 {
                     if (inventory[slotID].Count() >= 1 && this.currentBalance >= inventory[slotID][0].PriceInCents)
@@ -77,15 +76,12 @@ namespace Capstone.Classes
                         return x;
                     }
                 }
+                else
+                {
+                    throw new InvalidSlotIDException(" is not a valid choice");
+                }
               
-                
-            }
-            catch(Exception ex)
-            {
-                InvalidSlotIDException x = new InvalidSlotIDException();
-                //x.message;
-
-            }
+           
             
             return null;
         }
