@@ -9,71 +9,39 @@ namespace Capstone.Classes
 {
     public class TransactionFileLog 
     {
-        string fullPath;
-        //public DateTime DateTimeStamp
-        //{
-           // string timestamp = new DateTime.Now;
+        string filepath;
 
-        //    get { return timestamp; }
-        //    set { timestamp = value; }
-        //}
+
+        public TransactionFileLog(string filePath)
+        {
+            string currentDirectory = Directory.GetCurrentDirectory();
+            filepath = Path.Combine(currentDirectory, filePath);
+        }
+
 
         public void RecordCompleteTransaction(decimal initialAmount)
         {
-            //get { .initialAmount; }
+            using (StreamWriter sw = new StreamWriter(filepath, true))
+            {
+                sw.WriteLine(DateTime.UtcNow + " GIVE CHANGE " + initialAmount + "$0.00");
+            }
         }
 
         public void RecordDeposit(decimal depositAmount, decimal finalBalance)
         {
-            WriteTransaction("this is " + depositAmount + " something" + finalBalance);
-
-            //get { .depositAmount; }
-            //get { .finalBalance; }
+            using(StreamWriter sw = new StreamWriter(filepath, true))
+            {
+                sw.WriteLine(DateTime.UtcNow + " FEED MONEY " + depositAmount + "    " + finalBalance);
+            }
         }
 
         public void RecordPurchase(string productName, string slotId, decimal initialBalance, decimal finalBalance)
         {
-            //get { .productName; }
-            //get { .slotId; }
-            //get { .initialBalance; }
-            //get { .finalBalance; }
-        }
-
-        public void WriteTransaction(string message)
-        {
-            using(StreamWriter sw = new StreamWriter(fullPath))
+            using (StreamWriter sw = new StreamWriter(filepath, true))
             {
-                sw.WriteLine(message);
-            }      
+                sw.WriteLine(DateTime.UtcNow + " " + productName + "  " + slotId + " "  + initialBalance + " " + finalBalance);
+            }
         }
-
-        public TransactionFileLog(string filepath)
-        {
-            string currentDirectory = Directory.GetCurrentDirectory();
-            string filename = "Log.txt";
-            this.fullPath = Path.Combine(currentDirectory, filename);
-
-            //try
-            //{
-            //    using (StreamWriter sw = new StreamWriter(fullPath))
-            //    {
-
-            //        for (int i = 1; i < ; i++)
-            //        {
-            //            if ()
-            //            {
-            //                sw.WriteLine("");
-            //            }
-
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("" + ex.Message);
-            //}
-            
-        }
-
+       
     }
 }

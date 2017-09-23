@@ -13,12 +13,9 @@ namespace Capstone.Classes
         private decimal currentBalance;
         public Dictionary<string, List<VendingMachineItem>> inventory;
         InventoryFileDAL inventorySource;
-        //private string getItemAtSlot;
-        //private int feedDollars;
-        TransactionFileLog transactionLogger = new TransactionFileLog(filepath);
-        //consume message
+        TransactionFileLog transactionLogger = new TransactionFileLog("Log.txt");
         public List<string> consumeList = new List<string>();
-        //
+        
 
         public decimal CurrentBalance
         {
@@ -51,6 +48,8 @@ namespace Capstone.Classes
         public Change ReturnChange()
         {
             int x = Convert.ToInt32(this.currentBalance);
+            transactionLogger.RecordCompleteTransaction(this.currentBalance);
+
             this.currentBalance = 0;
             return new Change(x);
 
@@ -70,8 +69,9 @@ namespace Capstone.Classes
                 {
                     if (inventory[slotID].Count() >= 1 && this.currentBalance >= inventory[slotID][0].PriceInCents)
                     {
-                        consumeList.Add(inventory[slotID][0].Consume());
+                        this.transactionLogger.RecordPurchase(inventory[slotID][0].ItemName, slotID, this.currentBalance, this.currentBalance -= inventory[slotID][0].PriceInCents);
 
+                        consumeList.Add(inventory[slotID][0].Consume());
                         VendingMachineItem x = inventory[slotID][0];
                         this.currentBalance -= inventory[slotID][0].PriceInCents;
                         inventory[slotID].RemoveAt(0);

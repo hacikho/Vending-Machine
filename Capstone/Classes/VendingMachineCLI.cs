@@ -105,7 +105,7 @@ namespace Capstone.Classes
                 else if (Option_MakeSelection == "3")
                 {
                    // Console.WriteLine("Your change is $);
-                    Console.WriteLine(vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels);
+                    Console.WriteLine(vm.ReturnChange() + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels);
                     
                     Console.WriteLine("     Thank you for your business!!!");
                     Console.WriteLine();
