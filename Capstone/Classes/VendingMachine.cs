@@ -100,7 +100,10 @@ namespace Capstone.Classes
             }
         }
 
-        
+        public decimal GetCostOfItem(string slotID)
+        {
+            return inventory[slotID][0].PriceInCents;
+        }
      
         
     }

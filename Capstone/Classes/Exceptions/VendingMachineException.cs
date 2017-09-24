@@ -9,12 +9,10 @@ namespace Capstone.Classes.Exceptions
 {
     public class VendingMachineException : Exception
     {
-        /*
-        private string message;
-        public override string Message
+        public VendingMachineException(string message)
+            :base (message)
         {
-            get { return "exception message"; }   
-        } 
-        */
+
+        }
     }
 }

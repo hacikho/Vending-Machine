@@ -53,5 +53,27 @@ namespace Capstone.Classes
                 amountInDollars = amountInDollars - 5;
             }
         }
+
+        public Change(int amountInCents)
+        {
+            //amountInDollars = amountInDollars * 100;
+            while (amountInCents >= 25)
+            {
+                this.quarters++;
+                amountInCents = amountInCents - 25;
+            }
+
+            while (amountInCents >= 10)
+            {
+                this.dimes++;
+                amountInCents = amountInCents - 10;
+            }
+
+            if (amountInCents >= 5)
+            {
+                this.nickels++;
+                amountInCents = amountInCents - 5;
+            }
+        }
     }
 }

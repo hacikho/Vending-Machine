@@ -10,13 +10,12 @@ namespace Capstone.Classes.Exceptions
 {
     public class InvalidSlotIDException: VendingMachineException
     {
-        
-        private string message;
 
         public InvalidSlotIDException(string message)
+            :base (message)
         {
-            this.message = message;
+
         }
-        
+
     }
 }

@@ -9,11 +9,10 @@ namespace Capstone.Classes.Exceptions
 {
     class InsufficientFundsException: VendingMachineException
     {
-        private string message;
-
-        public override string Message
+        public InsufficientFundsException(string message)
+            :base (message)
         {
-            get { return "Insufficient Fund"; }
+
         }
     }
 }

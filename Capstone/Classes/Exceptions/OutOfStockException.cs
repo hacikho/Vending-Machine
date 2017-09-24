@@ -8,11 +8,10 @@ namespace Capstone.Classes.Exceptions
 {
     public class OutOfStockException : VendingMachineException
     {
-        private string message;
-
-        public override string Message
+        public OutOfStockException(string message)
+            :base (message)
         {
-            get { return "Out of Stock"; }
+
         }
 
     }

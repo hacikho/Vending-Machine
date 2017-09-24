@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using Capstone.Classes.Exceptions;
 
 namespace Capstone.Classes
 {
-    public class VendingMachineCLI
+    public class VendingMachineCLI : VendingMachine
     {
         private VendingMachine vm;
         private string Option_MakeSelection;
@@ -17,7 +18,9 @@ namespace Capstone.Classes
         private string Option_DisplayVendingMachine;
         private string Option_ReturnToPreviousMenu;
         private string Option_Quit;
-       
+        bool affordable;
+
+
         public VendingMachineCLI(VendingMachine vm)
         {
             this.vm = vm;
@@ -83,28 +86,56 @@ namespace Capstone.Classes
                 }
                 if (Option_MakeSelection == "2")
                 {
+                    Console.WriteLine("    Now enter a slot number to make your selection: ");
+                    string check = Console.ReadLine();
+                    
                     try
                     {
-                        Console.WriteLine("    Now enter a slot number to make your selection: ");
-                        string check = Console.ReadLine();
-                        vm.Purchase(check);
+                        if (!inventory.ContainsKey(check))
+                        {
+                            throw new InvalidSlotIDException("That is not a valid slot");
+                        }
                     }
-                    catch(OutOfStockException ex)
+                    catch(InvalidSlotIDException ex)
                     {
-                        Console.WriteLine(ex.Message); 
+
+                        Console.WriteLine(ex.Message);
+                        DisplayPurchaseMenu();
                     }
-                    finally
+                    try
                     {
+                        if(vm.GetQuantityRemaining(check) == 0)
+                        {
+                            throw new OutOfStockException(" Out of Stock");
+                        }
+                    }catch(OutOfStockException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        DisplayPurchaseMenu();
                     }
-               
-                    
+
+                    try
+                    {
+                        affordable = vm.GetCostOfItem(check) <= vm.CurrentBalance;
+                        if (!affordable)
+                        {
+                            throw new InsufficientFundsException("You dont have enough money");
+                        }
+                    }
+                    catch (InsufficientFundsException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        DisplayPurchaseMenu();
+                    }
+
+
+                    vm.Purchase(check);
                     Console.WriteLine();
                 }
                 else if (Option_MakeSelection == "3")
                 {
                     Console.WriteLine("     Thank you for your business!!!");
                     Console.WriteLine();
-                    //Console.WriteLine("     Your change is: " + x.Quarters + " quarters " + x.Dimes + " dimes " + x.Nickels + " nickels");  //need to finish
                     CalculateChange();
                     vm.ReturnChange();
 
