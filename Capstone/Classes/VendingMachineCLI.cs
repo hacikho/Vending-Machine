@@ -88,7 +88,10 @@ namespace Capstone.Classes
                         //OutOfStockException a = new OutOfStockException();
                         Console.WriteLine(ex.Message); 
                     }
-                    
+                    finally
+                    {
+                        //Console.WriteLine("You have selected" + );
+                    }
                     /*
                     if(vm.GetQuantityRemaining(check) == 0)
                     {
@@ -104,14 +107,16 @@ namespace Capstone.Classes
                 }
                 else if (Option_MakeSelection == "3")
                 {
-                   // Console.WriteLine("Your change is $);
-                    Console.WriteLine(vm.ReturnChange() + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels);
+                    // Console.WriteLine("Your change is $);
+
+                    Console.WriteLine(vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels + " nickels");
                     
                     Console.WriteLine("     Thank you for your business!!!");
                     Console.WriteLine();
                     for(int i=0; i< vm.consumeList.Count; i++)
                     {
                         Console.WriteLine(vm.consumeList[i]);
+                        Console.WriteLine();
                     }
                     vm.consumeList.Clear();
 

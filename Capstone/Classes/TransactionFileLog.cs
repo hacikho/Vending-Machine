@@ -18,7 +18,6 @@ namespace Capstone.Classes
             filepath = Path.Combine(currentDirectory, filePath);
         }
 
-
         public void RecordCompleteTransaction(decimal initialAmount)
         {
             using (StreamWriter sw = new StreamWriter(filepath, true))

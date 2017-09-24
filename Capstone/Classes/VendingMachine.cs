@@ -49,10 +49,8 @@ namespace Capstone.Classes
         {
             int x = Convert.ToInt32(this.currentBalance);
             transactionLogger.RecordCompleteTransaction(this.currentBalance);
-
             this.currentBalance = 0;
             return new Change(x);
-
         }
 
 
