@@ -16,7 +16,13 @@ namespace Capstone.Classes
         {
             string currentDirectory = Directory.GetCurrentDirectory();
             filepath = Path.Combine(currentDirectory, filePath);
-        }
+            if (File.Exists(filepath))
+            {
+                File.Delete(filepath);
+            }
+
+        }        
+
 
         public void RecordCompleteTransaction(decimal initialAmount)
         {
