@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +8,9 @@ namespace Capstone.Classes
 {
     public class Change
     {
-        private int dimes = 10;
-        private int nickels = 5;
-        private int quarters = 25;
-        //private int dimes;
-        //private int nickels;
-        //private int quarters;
-        //private double totalChange;
+        private int dimes;
+        private int nickels;
+        private int quarters;
 
         public int Dimes
         {
@@ -32,34 +27,31 @@ namespace Capstone.Classes
             get { return this.quarters; }
         }
 
-        public decimal TotalChange
+        public double TotalChange
         {
-            get { return (decimal)(this.quarters * 25 + this.dimes * 10 + this.nickels * 5); }
+            get { return (this.quarters * 25 + this.dimes * 10 + this.nickels * 5); }
         }
 
         public Change(decimal amountInDollars)
         {
-            if(amountInDollars )
+            amountInDollars = amountInDollars * 100;
+            while(amountInDollars >= 25)
             {
-
+                this.quarters++;
+                amountInDollars = amountInDollars - 25;
             }
-            
-            //if(amountInDollars>= 0.25M)
-            //{
-            //    this.quarters = (int)(amountInDollars / 0.25M);
-            //    amountInDollars = amountInDollars % 0.25M;
-            //}
-            //if(amountInDollars >= 0.10M)
-            //{
-            //    this.dimes = (int)(amountInDollars / 0.10M);
-            //    amountInDollars = amountInDollars % 0.10M;
-            //}
-            //if(amountInDollars >= 0.05M)
-            //{
-            //    this.nickels = (int)(amountInDollars / 0.05M);
-            //    amountInDollars = amountInDollars % 0.05M;
-            //}
-            
+
+            while(amountInDollars >= 10)
+            {
+                this.dimes++;
+                amountInDollars = amountInDollars - 10;
+            }
+
+            if(amountInDollars >= 5)
+            {
+                this.nickels++;
+                amountInDollars = amountInDollars - 5;
+            }
         }
     }
 }

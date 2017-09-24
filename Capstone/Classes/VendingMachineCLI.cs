@@ -27,7 +27,14 @@ namespace Capstone.Classes
         {
             foreach(KeyValuePair<string, List<VendingMachineItem>> kvp in vm.inventory)
             {
-                Console.WriteLine("{0}, {1}, {2}, {3}", kvp.Key, kvp.Value[0].ItemName, kvp.Value[0].PriceInCents, kvp.Value.Count);
+                if (kvp.Value.Count > 0)
+                {
+                    Console.WriteLine("{0}, {1}, {2}, {3}", kvp.Key, kvp.Value[0].ItemName, kvp.Value[0].PriceInCents, kvp.Value.Count);
+                }
+                else
+                {
+                    Console.WriteLine("{0} SOLD OUT", kvp.Key);
+                }
             }
         }
 
@@ -57,7 +64,7 @@ namespace Capstone.Classes
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("     -------------Purchase Menu------");
+                Console.WriteLine("     -------------Purchase Menu--------------------");
                 Console.WriteLine("     Please make your selection: ");
                 Console.WriteLine("     Current Money Provided:  $" + vm.CurrentBalance);
                 Console.WriteLine("     1) Feed Money");
@@ -72,7 +79,6 @@ namespace Capstone.Classes
                     Console.WriteLine("Please enter the number of dollars you want to feed into the vending machine: ");
                     vm.FeedMoney(int.Parse(Console.ReadLine()));
                     Console.WriteLine("     Current Money Provided:  $" + vm.CurrentBalance);
-                    //Console.WriteLine("     Your change is: " + vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels + " nickels");  //need to finish
                     Console.WriteLine();
                 }
                 if (Option_MakeSelection == "2")
@@ -85,47 +91,42 @@ namespace Capstone.Classes
                     }
                     catch(OutOfStockException ex)
                     {
-                        //OutOfStockException a = new OutOfStockException();
                         Console.WriteLine(ex.Message); 
                     }
                     finally
                     {
-                        //Console.WriteLine("You have selected" + );
                     }
-                    /*
-                    if(vm.GetQuantityRemaining(check) == 0)
-                    {
-                        Console.WriteLine("Item is Sold Out");
-                    }
-                    else if(vm.GetQuantityRemaining(check) == -1)
-                    {
-                        
-                    }
-                    */
+               
                     
                     Console.WriteLine();
                 }
                 else if (Option_MakeSelection == "3")
                 {
-                    // Console.WriteLine("Your change is $);
-
-                    Console.WriteLine(vm.ReturnChange().Quarters + " quarters " + vm.ReturnChange().Dimes + " dimes " + vm.ReturnChange().Nickels + " nickels");
-                    
                     Console.WriteLine("     Thank you for your business!!!");
                     Console.WriteLine();
-                    for(int i=0; i< vm.consumeList.Count; i++)
+                    //Console.WriteLine("     Your change is: " + x.Quarters + " quarters " + x.Dimes + " dimes " + x.Nickels + " nickels");  //need to finish
+                    CalculateChange();
+                    vm.ReturnChange();
+
+                    Console.WriteLine();
+                    for (int i=0; i< vm.consumeList.Count; i++)
                     {
                         Console.WriteLine(vm.consumeList[i]);
                         Console.WriteLine();
                     }
                     vm.consumeList.Clear();
-
                 }
                 else if (Option_MakeSelection == "4")
                 {
                     flag = false;
                 }
             }
+        }
+
+        public void CalculateChange()
+        {
+            Change result = new Change(vm.CurrentBalance);
+            Console.Write($"{result.Quarters} Quarters {result.Dimes} Dimes {result.Nickels} Nickels");
         }
 
         public void Run()

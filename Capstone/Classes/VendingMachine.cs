@@ -47,10 +47,12 @@ namespace Capstone.Classes
 
         public Change ReturnChange()
         {
-            int x = Convert.ToInt32(this.currentBalance);
+            //int x = Convert.ToInt32(this.currentBalance);
+            Change a = new Change(this.currentBalance);
+            
             transactionLogger.RecordCompleteTransaction(this.currentBalance);
             this.currentBalance = 0;
-            return new Change(x);
+            return a;
         }
 
 
@@ -71,7 +73,6 @@ namespace Capstone.Classes
 
                         consumeList.Add(inventory[slotID][0].Consume());
                         VendingMachineItem x = inventory[slotID][0];
-                        this.currentBalance -= inventory[slotID][0].PriceInCents;
                         inventory[slotID].RemoveAt(0);
                         return x;
                     }
