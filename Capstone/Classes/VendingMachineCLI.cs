@@ -127,19 +127,28 @@ namespace Capstone.Classes
 
                 if (Option_MakeSelection == "1")
                 {
-                    Console.WriteLine("Please enter the number of dollars you want to feed into the vending machine: ");
-                    vm.FeedMoney(int.Parse(Console.ReadLine()));
+                    Console.WriteLine("     Please enter the number of dollars you want to feed into the vending machine: ");
+                    string moneyAmount = Console.ReadLine();
+                    try
+                    {
+                        vm.FeedMoney(Int32.Parse(moneyAmount));
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("     {0} is not a valid money", moneyAmount);
+                    }
+
                     Console.WriteLine("     Current Money Provided:  $" + vm.CurrentBalance);
                     Console.WriteLine();
                 }
                 if (Option_MakeSelection == "2")
                 {
                     Console.WriteLine("    Now enter a slot number to make your selection: ");
-                    string check = Console.ReadLine();
+                    string check = Console.ReadLine().ToUpper();
 
                     InvalidSlotIDExceptionMethod(check);
                     OutOfStockExceptionMethod(check);
-                    if (!(vm.GetQuantityRemaining(check) == 0))
+                    if (!(vm.GetQuantityRemaining(check) == 0) && inventory.ContainsKey(check))
                     {
                         InsufficienFunsExceptionMethod(check);
                     }
