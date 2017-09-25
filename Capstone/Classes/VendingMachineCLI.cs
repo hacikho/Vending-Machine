@@ -97,14 +97,18 @@ namespace Capstone.Classes
                 sw.WriteLine("Triplemint        | " + (vm.inventory["D4"].Equals(null) ? 0 : vm.inventory["D4"].Count));
 
                 decimal totalSale = 0M;
-                foreach (KeyValuePair<string, List<VendingMachineItem>> kvp in vm.inventory)
+                for(int i=0; i<vm.saleResportList.Count; i++)
                 {
-                    if (kvp.Value.Count > 0)
-                    {
-                        totalSale += kvp.Value[0].PriceInCents * (5-kvp.Value.Count);
-                    }
-                    
+                    totalSale += vm.saleResportList[i];
                 }
+                //foreach (KeyValuePair<string, List<VendingMachineItem>> kvp in vm.inventory)
+                //{
+                //    if (kvp.Value.Count > 0)
+                //    {
+                //        totalSale += kvp.Value[0].PriceInCents * (5-kvp.Value.Count);
+                //    }
+                    
+                //}
                 sw.WriteLine("TOTAL SALE $" + totalSale);
             }
 

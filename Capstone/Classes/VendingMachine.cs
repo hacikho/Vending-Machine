@@ -15,6 +15,7 @@ namespace Capstone.Classes
         InventoryFileDAL inventorySource;
         TransactionFileLog transactionLogger = new TransactionFileLog("Log.txt");
         public List<string> consumeList = new List<string>();
+        public List<decimal> saleResportList = new List<decimal>();
         
 
         public decimal CurrentBalance
@@ -69,8 +70,9 @@ namespace Capstone.Classes
                 {
                     if (inventory[slotID].Count() >= 1 && this.currentBalance >= inventory[slotID][0].PriceInCents)
                     {
+                        saleResportList.Add(inventory[slotID][0].PriceInCents);
                         this.transactionLogger.RecordPurchase(inventory[slotID][0].ItemName, slotID, this.currentBalance, this.currentBalance -= inventory[slotID][0].PriceInCents);
-
+                        
                         consumeList.Add(inventory[slotID][0].Consume());
                         VendingMachineItem x = inventory[slotID][0];
                         inventory[slotID].RemoveAt(0);
