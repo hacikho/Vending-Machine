@@ -79,7 +79,7 @@ namespace Capstone.Classes
             }
             using (StreamWriter sw = new StreamWriter(filepath, true))
             { 
-                sw.WriteLine("Potato Crisps     | " + (vm.inventory["A1"].Equals( null) ? 0 : vm.inventory["A1"].Count));
+                sw.WriteLine("Potato Crisps     | " + (vm.inventory["A1"].Equals(null) ? 0 : vm.inventory["A1"].Count));
                 sw.WriteLine("Stackers          | " + (vm.inventory["A2"].Equals(null) ? 0 : vm.inventory["A2"].Count));
                 sw.WriteLine("Grain Waves       | " + (vm.inventory["A3"].Equals(null) ? 0 : vm.inventory["A3"].Count));
                 sw.WriteLine("Cloud Popcorn     | " + (vm.inventory["A4"].Equals(null) ? 0 : vm.inventory["A4"].Count));
@@ -105,7 +105,7 @@ namespace Capstone.Classes
                     }
                     
                 }
-                sw.WriteLine("TOTAL SALE " + totalSale);
+                sw.WriteLine("TOTAL SALE $" + totalSale);
             }
 
         }
@@ -136,7 +136,15 @@ namespace Capstone.Classes
                 {
                     Console.WriteLine("    Now enter a slot number to make your selection: ");
                     string check = Console.ReadLine();
-                    
+
+                    InvalidSlotIDExceptionMethod(check);
+                    OutOfStockExceptionMethod(check);
+                    if (!(vm.GetQuantityRemaining(check) == 0))
+                    {
+                        InsufficienFunsExceptionMethod(check);
+                    }
+
+                    /*
                     try
                     {
                         if (!inventory.ContainsKey(check))
@@ -176,8 +184,12 @@ namespace Capstone.Classes
                         DisplayPurchaseMenu();
                     }
 
-
-                    vm.Purchase(check);
+                    */
+                    if (inventory.ContainsKey(check) && !(vm.GetQuantityRemaining(check) == 0) && (vm.GetCostOfItem(check) <= vm.CurrentBalance))
+                    {
+                        vm.Purchase(check);
+                    }
+                    
                     Console.WriteLine();
                 }
                 else if (Option_MakeSelection == "3")
@@ -206,6 +218,56 @@ namespace Capstone.Classes
         {
             Change result = new Change(vm.CurrentBalance);
             Console.Write($"{result.Quarters} Quarters {result.Dimes} Dimes {result.Nickels} Nickels");
+        }
+
+        public void InvalidSlotIDExceptionMethod(string check)
+        {
+            try
+            {
+                if (!inventory.ContainsKey(check))
+                {
+                    throw new InvalidSlotIDException("That is not a valid slot");
+                }
+            }
+            catch (InvalidSlotIDException ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                //DisplayPurchaseMenu();
+            }
+        }
+
+        public void OutOfStockExceptionMethod(string check)
+        {
+            try
+            {
+                if (vm.GetQuantityRemaining(check) == 0)
+                {
+                    throw new OutOfStockException(" Out of Stock");
+                }
+            }
+            catch (OutOfStockException ex)
+            {
+                Console.WriteLine(ex.Message);
+                //DisplayPurchaseMenu();
+            }
+        }
+
+        public void InsufficienFunsExceptionMethod(string check)
+        {
+            try
+            {
+                affordable = vm.GetCostOfItem(check) <= vm.CurrentBalance;
+                if (!affordable)
+                {
+                    throw new InsufficientFundsException("You dont have enough money");
+                }
+            }
+            catch (InsufficientFundsException ex)
+            {
+                Console.WriteLine(ex.Message);
+                //DisplayPurchaseMenu();
+            }
         }
 
         public void Run()
