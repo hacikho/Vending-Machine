@@ -47,6 +47,7 @@ namespace Capstone.Classes
             Console.WriteLine("Please make your selection: ");
             Console.WriteLine("(1) Display Vending Machine Items");
             Console.WriteLine("(2) Purchase");
+            Console.WriteLine("(3) Exit the Application");
             Option_MakeSelection = Console.ReadLine();
             Console.WriteLine();
 
@@ -60,6 +61,53 @@ namespace Capstone.Classes
                 DisplayPurchaseMenu();
                 Console.WriteLine();
             }
+            else if(Option_MakeSelection == "3")
+            {
+                SalesReport();
+                Environment.Exit(0);
+            }
+        }
+
+        private void SalesReport()
+        {
+
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string filepath = Path.Combine(currentDirectory, "SalesReport.txt");
+            if (File.Exists(filepath))
+            {
+                File.Delete(filepath);
+            }
+            using (StreamWriter sw = new StreamWriter(filepath, true))
+            { 
+                sw.WriteLine("Potato Crisps     | " + (vm.inventory["A1"].Equals( null) ? 0 : vm.inventory["A1"].Count));
+                sw.WriteLine("Stackers          | " + (vm.inventory["A2"].Equals(null) ? 0 : vm.inventory["A2"].Count));
+                sw.WriteLine("Grain Waves       | " + (vm.inventory["A3"].Equals(null) ? 0 : vm.inventory["A3"].Count));
+                sw.WriteLine("Cloud Popcorn     | " + (vm.inventory["A4"].Equals(null) ? 0 : vm.inventory["A4"].Count));
+                sw.WriteLine("Moonpie           | " + (vm.inventory["B1"].Equals(null) ? 0 : vm.inventory["B1"].Count));
+                sw.WriteLine("Cowtales          | " + (vm.inventory["B2"].Equals(null) ? 0 : vm.inventory["B2"].Count));
+                sw.WriteLine("Wonka Bar         | " + (vm.inventory["B3"].Equals(null) ? 0 : vm.inventory["B3"].Count));
+                sw.WriteLine("Crunchie          | " + (vm.inventory["B4"].Equals(null) ? 0 : vm.inventory["B4"].Count));
+                sw.WriteLine("Cola              | " + (vm.inventory["C1"].Equals(null) ? 0 : vm.inventory["C1"].Count));
+                sw.WriteLine("Dr.Salt           | " + (vm.inventory["C2"].Equals(null) ? 0 : vm.inventory["C2"].Count));
+                sw.WriteLine("Mountain Melter   | " + (vm.inventory["C3"].Equals(null) ? 0 : vm.inventory["C3"].Count));
+                sw.WriteLine("Heavy             | " + (vm.inventory["C4"].Equals(null) ? 0 : vm.inventory["C4"].Count));
+                sw.WriteLine("U - Chews         | " + (vm.inventory["D1"].Equals(null) ? 0 : vm.inventory["D1"].Count));
+                sw.WriteLine("Little League Chew| " + (vm.inventory["D2"].Equals(null) ? 0 : vm.inventory["D2"].Count));
+                sw.WriteLine("Chiclets          | " + (vm.inventory["D3"].Equals(null) ? 0 : vm.inventory["D3"].Count));
+                sw.WriteLine("Triplemint        | " + (vm.inventory["D4"].Equals(null) ? 0 : vm.inventory["D4"].Count));
+
+                decimal totalSale = 0M;
+                foreach (KeyValuePair<string, List<VendingMachineItem>> kvp in vm.inventory)
+                {
+                    if (kvp.Value.Count > 0)
+                    {
+                        totalSale += kvp.Value[0].PriceInCents * (5-kvp.Value.Count);
+                    }
+                    
+                }
+                sw.WriteLine("TOTAL SALE " + totalSale);
+            }
+
         }
 
         public void DisplayPurchaseMenu()
