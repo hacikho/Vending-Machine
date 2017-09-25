@@ -12,12 +12,12 @@ namespace Capstone.Classes
     {
         private VendingMachine vm;
         private string Option_MakeSelection;
-        private string Option_ReturnChange;
-        private string Option_InsertMoney;
-        private string Option_DisplayPurchaseMenu;
-        private string Option_DisplayVendingMachine;
-        private string Option_ReturnToPreviousMenu;
-        private string Option_Quit;
+        //private string Option_ReturnChange;
+        //private string Option_InsertMoney;
+        //private string Option_DisplayPurchaseMenu;
+        //private string Option_DisplayVendingMachine;
+        //private string Option_ReturnToPreviousMenu;
+        //private string Option_Quit;
         bool affordable;
 
 
@@ -101,15 +101,7 @@ namespace Capstone.Classes
                 {
                     totalSale += vm.saleResportList[i];
                 }
-                //foreach (KeyValuePair<string, List<VendingMachineItem>> kvp in vm.inventory)
-                //{
-                //    if (kvp.Value.Count > 0)
-                //    {
-                //        totalSale += kvp.Value[0].PriceInCents * (5-kvp.Value.Count);
-                //    }
-                    
-                //}
-                sw.WriteLine("TOTAL SALE $" + totalSale);
+                sw.WriteLine("**TOTAL SALE** $" + totalSale);
             }
 
         }
@@ -230,7 +222,7 @@ namespace Capstone.Classes
         public void CalculateChange()
         {
             Change result = new Change(vm.CurrentBalance);
-            Console.Write($"{result.Quarters} Quarters {result.Dimes} Dimes {result.Nickels} Nickels");
+            Console.Write($"     {result.Quarters} Quarters {result.Dimes} Dimes {result.Nickels} Nickels");
         }
 
         public void InvalidSlotIDExceptionMethod(string check)
@@ -239,7 +231,7 @@ namespace Capstone.Classes
             {
                 if (!inventory.ContainsKey(check))
                 {
-                    throw new InvalidSlotIDException("That is not a valid slot");
+                    throw new InvalidSlotIDException("     That is not a valid slot");
                 }
             }
             catch (InvalidSlotIDException ex)
@@ -256,7 +248,7 @@ namespace Capstone.Classes
             {
                 if (vm.GetQuantityRemaining(check) == 0)
                 {
-                    throw new OutOfStockException(" Out of Stock");
+                    throw new OutOfStockException("     Out of Stock");
                 }
             }
             catch (OutOfStockException ex)
@@ -273,7 +265,7 @@ namespace Capstone.Classes
                 affordable = vm.GetCostOfItem(check) <= vm.CurrentBalance;
                 if (!affordable)
                 {
-                    throw new InsufficientFundsException("You dont have enough money");
+                    throw new InsufficientFundsException("     You dont have enough money");
                 }
             }
             catch (InsufficientFundsException ex)

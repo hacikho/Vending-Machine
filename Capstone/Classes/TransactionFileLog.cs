@@ -28,7 +28,7 @@ namespace Capstone.Classes
         {
             using (StreamWriter sw = new StreamWriter(filepath, true))
             {
-                sw.WriteLine(DateTime.UtcNow + " GIVE CHANGE " + initialAmount + "$0.00");
+                sw.WriteLine($"{DateTime.UtcNow}  GIVE CHANGE:  ${initialAmount}  $0.00");
             }
         }
 
@@ -36,7 +36,7 @@ namespace Capstone.Classes
         {
             using(StreamWriter sw = new StreamWriter(filepath, true))
             {
-                sw.WriteLine(DateTime.UtcNow + " FEED MONEY " + depositAmount + "    " + finalBalance);
+                sw.WriteLine($"{DateTime.UtcNow}  FEED MONEY:         ${depositAmount}  ${finalBalance}");
             }
         }
 
@@ -44,7 +44,7 @@ namespace Capstone.Classes
         {
             using (StreamWriter sw = new StreamWriter(filepath, true))
             {
-                sw.WriteLine(DateTime.UtcNow + " " + productName + "  " + slotId + " "  + initialBalance + " " + finalBalance);
+                sw.WriteLine($"{DateTime.UtcNow}  {productName}  {slotId}  ${initialBalance}  ${finalBalance}");
             }
         }
        
